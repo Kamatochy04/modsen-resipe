@@ -6,6 +6,7 @@ export const lightTheme = {
         smallLaptop: '(max-width: 1280px)',
     },
     colors: {
+        primary_color: '#fff',
         main_color: '#F17900',
         main_opacity_color: ' rgba(241, 121, 0, 0.5)',
         second_color: '#27355A',
@@ -47,6 +48,7 @@ export const darkTheme = {
         smallLaptop: '(max-width: 1280px)',
     },
     colors: {
+        primary_color: '#000',
         main_color: '#27355A',
         main_opacity_color: ' #27355A',
         second_color: '#F17900',
