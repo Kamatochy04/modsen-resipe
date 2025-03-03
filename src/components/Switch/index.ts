@@ -20,7 +20,7 @@ export const Slider = styled.span<{ checked: boolean }>`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${(props) => (props.checked ? '#000' : '#fff')};
+    background-color: ${(props) => props.theme.colors.primary_color};
     transition: 0.4s;
     border-radius: 24px;
 
@@ -31,7 +31,7 @@ export const Slider = styled.span<{ checked: boolean }>`
         width: 25px;
         left: 14px;
         bottom: 24%;
-        background-color: ${(props) => (props.checked ? '#27355A' : '#F17900')};
+        background-color: ${(props) => props.theme.colors.main_color};
         transition: 0.4s;
         border-radius: 50%;
         transform: ${(props) => (props.checked ? 'translateX(50px)' : 'translateX(0)')};

@@ -21,8 +21,8 @@ function RecipeCard({
     recipe,
     removeFromFavorite,
     removeFromCooked,
-    isCooked: initialIsCooked,
-    isFavorite: initialIsFavorite,
+    isCooked: initialIsCooked = false,
+    isFavorite: initialIsFavorite = false,
 }: RecipeCardProps) {
     const { toggleRecipe } = useRecipe();
     const navigate = useNavigate();
@@ -30,22 +30,19 @@ function RecipeCard({
     const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
     const [isCooked, setIsCooked] = useState(initialIsCooked);
 
-    const handleIconClick = (e: React.MouseEvent, key: string) => {
-        e.stopPropagation();
-
+    const handleToggle = (key: 'favorite' | 'cooked') => {
         if (key === 'favorite') {
             setIsFavorite((prev) => !prev);
-            toggleRecipe(key, recipe);
             if (removeFromFavorite && !isFavorite) {
                 removeFromFavorite(recipe.id);
             }
         } else if (key === 'cooked') {
             setIsCooked((prev) => !prev);
-            toggleRecipe(key, recipe);
             if (removeFromCooked && !isCooked) {
                 removeFromCooked(recipe.id);
             }
         }
+        toggleRecipe(key, recipe);
     };
 
     const handleCardClick = () => {
@@ -57,11 +54,21 @@ function RecipeCard({
             <ItemImage src={recipe.image} />
             <ItemLabel>{recipe.label}</ItemLabel>
             <ItemFooter>
-                <div onClick={(e: React.MouseEvent) => handleIconClick(e, 'favorite')}>
+                <div
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleToggle('favorite');
+                    }}
+                >
                     {isFavorite ? <HeartActiveIcon /> : <HeartIcon />}
                 </div>
 
-                <div onClick={(e: React.MouseEvent) => handleIconClick(e, 'cooked')}>
+                <div
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleToggle('cooked');
+                    }}
+                >
                     {isCooked ? <MarkActiveIcon /> : <MarkIcon />}
                 </div>
             </ItemFooter>
